@@ -14,6 +14,7 @@ app.use((req, res, next) => {
     res.on('finish', () => {
         logging_1.default.info(NAMESPACE, `METHOD - [${req.method}], URL - [${req.url}], IP - [${req.socket.remoteAddress}], STATUS - [${res.statusCode}]`);
     });
+    next();
 });
 app.use(express_1.default.urlencoded({ extended: false }));
 app.use(express_1.default.json());
@@ -25,8 +26,12 @@ app.use((req, res, next) => {
         res.header('Access-Control-Allow-Methods', 'GET PATCH DELETE POST PUT');
         return res.status(200).json({});
     }
+    next();
 });
 /** Routes */
+app.get('/', (req, res, next) => {
+    res.status(200).json({ message: 'Hello World' });
+});
 /** Error Handling */
 app.use((req, res, next) => {
     const error = new Error('not found');
