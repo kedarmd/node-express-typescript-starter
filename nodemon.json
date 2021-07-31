@@ -2,5 +2,6 @@
 	"watch": ["source"],
 	"ext": "ts,json",
 	"ignore": ["build"],
-	"exec": "ts-node ./source/app.ts"
+	"exec": "ts-node-dev ./source/app.ts",
+	"restartable": "rs"
 }
